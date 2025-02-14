@@ -12,10 +12,11 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
+          username: ubuntu
           host: ${{ secrets.EC2_HOST }}
-         key: ${{ secrets.EC2_PRIVATE_KEY }}
-         script: |
-          cd /root/fastapi-book-project
-          git pull origin main
-          pip install -r requirements.txt
-          sudo systemctl restart fastapi
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            cd /root/fastapi-book-project
+            git pull origin main
+            pip install -r requirements.txt
+            sudo systemctl restart fastapi
